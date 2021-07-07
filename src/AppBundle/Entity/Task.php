@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use DateTime;
 
 /**
  * @ORM\Entity
@@ -42,54 +43,54 @@ class Task
 
     public function __construct()
     {
-        $this->createdAt = new \Datetime();
+        $this->createdAt = new Datetime();
         $this->isDone = false;
     }
 
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getCreatedAt() : \DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\Datetime $createdAt) : ?string
+    public function setCreatedAt(\Datetime $createdAt): ?string
     {
         $this->createdAt = $createdAt;
         return null;
     }
 
-    public function getTitle() : string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function setTitle(string $title) : ?string
+    public function setTitle(string $title): ?string
     {
         $this->title = $title;
         return null;
     }
 
-    public function getContent() : string
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
-    public function setContent(string $content) : ?string
+    public function setContent(string $content): ?string
     {
         $this->content = $content;
         return null;
     }
 
-    public function isDone() : bool
+    public function isDone(): bool
     {
         return $this->isDone;
     }
 
-    public function toggle(bool $flag) : ?string
+    public function toggle(bool $flag): ?string
     {
         $this->isDone = $flag;
         return null;

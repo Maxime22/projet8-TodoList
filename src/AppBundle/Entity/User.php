@@ -22,7 +22,7 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @ORM\Column(type="string",     length=25, unique=true)
      * @Assert\NotBlank(message="Vous devez saisir un nom d'utilisateur.")
      */
     private $username;
@@ -33,61 +33,61 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=60, unique=true)
+     * @ORM\Column(type="string",     length=60, unique=true)
      * @Assert\NotBlank(message="Vous devez saisir une adresse email.")
-     * @Assert\Email(message="Le format de l'adresse n'est pas correcte.")
+     * @Assert\Email(message="Le      format de l'adresse n'est pas correcte.")
      */
     private $email;
 
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getUsername() : string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    public function setUsername(string $username) : ?string
+    public function setUsername(string $username): ?string
     {
         $this->username = $username;
         return null;
     }
 
-    public function getSalt() : ?string
+    public function getSalt(): ?string
     {
         return null;
     }
 
-    public function getPassword() : string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password) : ?string
+    public function setPassword(string $password): ?string
     {
         $this->password = $password;
         return null;
     }
 
-    public function getEmail() : string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email) : ?string
+    public function setEmail(string $email): ?string
     {
         $this->email = $email;
         return null;
     }
 
-    public function getRoles() : array
+    public function getRoles(): array
     {
         return array('ROLE_USER');
     }
 
-    public function eraseCredentials() :?string
+    public function eraseCredentials(): ?string
     {
         return null;
     }
