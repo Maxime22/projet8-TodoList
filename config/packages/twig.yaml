@@ -1,0 +1,9 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    form_themes: ['bootstrap_3_layout.html.twig']
+    exception_controller: null
+    strict_variables: "%kernel.debug%"
+
+#when@test:
+#    twig:
+#        strict_variables: true 

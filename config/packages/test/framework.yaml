@@ -1,0 +1,8 @@
+framework:
+    test: true
+    session:
+        storage_id: session.storage.mock_file
+
+    #old version of config_test
+    #profiler:
+    #    collect: false
