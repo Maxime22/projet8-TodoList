@@ -1,6 +1,9 @@
 security:
-    encoders:
-        App\Entity\User: bcrypt
+    enable_authenticator_manager: true
+    password_hashers:
+       App\Entity\User:
+            algorithm: auto
+            cost: 12
 
     providers:
         users:
@@ -14,7 +17,6 @@ security:
             security: false
 
         main:
-            anonymous: ~
             pattern: ^/
             form_login:
                 login_path: login
