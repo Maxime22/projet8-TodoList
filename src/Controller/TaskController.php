@@ -87,6 +87,8 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task): Response
     {
+        $this->denyAccessUnlessGranted('task_delete', $task);
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
         $em->flush();
