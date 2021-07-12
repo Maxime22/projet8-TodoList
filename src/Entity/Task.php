@@ -41,6 +41,11 @@ class Task
      */
     private $isDone;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tasks")
+     */
+    private $author;
+
     public function __construct()
     {
         $this->createdAt = new Datetime();
@@ -57,9 +62,9 @@ class Task
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\Datetime $createdAt): ?string
+    public function setCreatedAt(): ?string
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTime();
         return null;
     }
 
@@ -94,5 +99,17 @@ class Task
     {
         $this->isDone = $flag;
         return null;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
     }
 }

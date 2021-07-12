@@ -25,7 +25,9 @@
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
         "symfony/monolog-bundle": "^3.7",
-        "symfony/yaml": "5.3.*"
+        "symfony/yaml": "5.3.*",
+        "symfony/validator": "5.3.*",
+        "doctrine/annotations": "^1.13"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^3.0",
@@ -34,7 +36,9 @@
         "phpmd/phpmd": "^2.10",
         "symfony/stopwatch": "5.3.*",
         "symfony/web-profiler-bundle": "5.3.*",
-        "sebastian/phpcpd": "6.0.3"
+        "sebastian/phpcpd": "6.0.3",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "symfony/maker-bundle": "^1.33"
     },
     "conflict": {
         "symfony/symfony": "*"
