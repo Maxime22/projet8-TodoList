@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\UserRepository;
 
 /**
  * @ORM\Table("user")
@@ -37,6 +38,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="Votre mot de passe ne peut être vide")
+     * @Assert\Regex(pattern="/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,}$/",message="Au moins 8 caractères, un chiffre, une majuscule et un caractère spécial parmi : !@#$%^&*-")
      */
     private $password;
 
@@ -72,10 +75,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->username;
     }
 
-    public function setUsername(string $username): ?string
+    public function setUsername(string $username): self
     {
         $this->username = $username;
-        return null;
+        return $this;
     }
 
     public function getSalt(): ?string
@@ -88,10 +91,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): ?string
+    public function setPassword(string $password): self
     {
         $this->password = $password;
-        return null;
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -99,15 +102,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): ?string
+    public function setEmail(string $email): self
     {
         $this->email = $email;
-        return null;
+        return $this;
     }
 
     public function getRoles(): array
     {
-        return array('ROLE_USER');
+        return $this->roles;
     }
 
     public function setRoles(array $roles): self

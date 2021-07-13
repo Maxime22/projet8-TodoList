@@ -9,6 +9,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
+    public const DEMO_USER_REFERENCE = 'demo-user';
+
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
@@ -29,6 +31,9 @@ class UserFixtures extends Fixture
             $user->setRoles($data['roles'][$i]);
             $user->setPassword($this->passwordHasher->hashPassword($user, "1234Jean%1234"));
             $manager->persist($user);
+            if($data['username'][$i] === "demo"){
+                $this->addReference(self::DEMO_USER_REFERENCE, $user);
+            }
         }
 
         $manager->flush();
