@@ -29,22 +29,4 @@ class SecurityController extends AbstractController
             )
         );
     }
-
-    /**
-     * @Route("/login_check", name="login_check")
-     */
-    public function loginCheck(): ?string
-    {
-        // This code is never executed.
-        return null;
-    }
-
-    /**
-     * @Route("/logout", name="logout")
-     */
-    public function logoutCheck(): ?string
-    {
-        // This code is never executed.
-        return null;
-    }
 }
