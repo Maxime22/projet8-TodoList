@@ -2,6 +2,7 @@
 
 namespace App\Tests\Entity;
 
+use DateTime;
 use App\Entity\Task;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -40,10 +41,15 @@ class TaskTest extends KernelTestCase
         $this->assertCount($errorNumber, $errors, implode(', ', $messages));
     }
 
-    /* VALIDATORS */
     public function testValidTask()
     {
         $task = $this->getValidEntity();
         $this->assertHasErrors($task);
+    }
+
+    public function testCreatedAt()
+    {
+        $task = $this->getValidEntity();
+        $this->assertInstanceOf(DateTime::class, $task->getCreatedAt());
     }
 }

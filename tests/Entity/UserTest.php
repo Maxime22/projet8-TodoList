@@ -29,7 +29,6 @@ class UserTest extends KernelTestCase{
         $this->assertCount($errorNumber, $errors, implode(', ', $messages));
     }
 
-    /* VALIDATORS */
     public function testValidUser()
     {
         $user = $this->getValidEntity();
