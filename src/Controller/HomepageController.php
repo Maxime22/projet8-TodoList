@@ -7,9 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * DefaultController
+ * HomepageController
  */
-class DefaultController extends AbstractController
+class HomepageController extends AbstractController
 {
     /**
      * @Route("/", name="homepage")

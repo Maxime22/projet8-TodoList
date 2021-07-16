@@ -16,7 +16,7 @@ class SecurityController extends AbstractController
     public function loginAction(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('homepage');
         }
 
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -28,23 +28,5 @@ class SecurityController extends AbstractController
             'error'         => $error,
             )
         );
-    }
-
-    /**
-     * @Route("/login_check", name="login_check")
-     */
-    public function loginCheck(): ?string
-    {
-        // This code is never executed.
-        return null;
-    }
-
-    /**
-     * @Route("/logout", name="logout")
-     */
-    public function logoutCheck(): ?string
-    {
-        // This code is never executed.
-        return null;
     }
 }
