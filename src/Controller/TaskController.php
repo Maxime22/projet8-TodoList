@@ -17,7 +17,10 @@ class TaskController extends AbstractController
      */
     public function listAction(): Response
     {
-        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('App:Task')->findAll()]);
+        return $this->render(
+            'task/list.html.twig',
+            ['tasks' => $this->getDoctrine()->getRepository(Task::class)->findAll()]
+        );
     }
 
     /**
@@ -63,9 +66,10 @@ class TaskController extends AbstractController
         }
 
         return $this->render(
-            'task/edit.html.twig', [
-            'form' => $form->createView(),
-            'task' => $task,
+            'task/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'task' => $task,
             ]
         );
     }

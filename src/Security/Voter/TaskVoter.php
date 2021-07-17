@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class TaskVoter extends Voter
 {
-    const TASK_DELETE = "task_delete";
+    public const TASK_DELETE = "task_delete";
 
     protected function supports(string $attribute, $task): bool
     {
@@ -31,22 +31,19 @@ class TaskVoter extends Voter
         if ($task->getAuthor() === null) {
             if (in_array("ROLE_ADMIN", $user->getRoles())) {
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
             case self::TASK_DELETE:
                 return $this->canDelete($task, $user);
-                break;
         }
-
         return false;
     }
 
-    private function canDelete(Task $task, User $user)
+    private function canDelete(Task $task, UserInterface $user): bool
     {
         return $user === $task->getAuthor();
     }

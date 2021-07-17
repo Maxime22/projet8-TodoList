@@ -13,12 +13,15 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class UserType extends AbstractType
 {
+    /** @phpstan-ignore-next-line */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('username', TextType::class, ['label' => "Nom d'utilisateur"])
             ->add(
-                'password', RepeatedType::class, [
+                'password',
+                RepeatedType::class,
+                [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les deux mots de passe doivent correspondre.',
                 'required' => true,
