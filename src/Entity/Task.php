@@ -60,14 +60,14 @@ class Task
         return $this->id;
     }
 
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
     public function setCreatedAt(): self
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new DateTime();
         return $this;
     }
 

@@ -32,10 +32,9 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
             $task->toggle($data["isDone"][$i]);
             // we need anonymous users for the tasks which already exist
             // except one for the tests that we put to demo user
+            $task->setAuthor(null);
             if ($i === 4) {
                 $task->setAuthor($this->getReference($author));
-            } else {
-                $task->setAuthor(null);
             }
             $manager->persist($task);
         }
