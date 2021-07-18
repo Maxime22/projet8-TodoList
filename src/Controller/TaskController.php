@@ -18,7 +18,18 @@ class TaskController extends AbstractController
     {
         return $this->render(
             'task/list.html.twig',
-            ['tasks' => $this->getDoctrine()->getRepository(Task::class)->findAll()]
+            ['tasks' => $this->getDoctrine()->getRepository(Task::class)->findBy(['isDone' => 0])]
+        );
+    }
+
+    /**
+     * @Route("/tasks/ended", name="task_list_ended")
+     */
+    public function listEndingAction()
+    {
+        return $this->render(
+            'task/list.html.twig',
+            ['tasks' => $this->getDoctrine()->getRepository(Task::class)->findBy(['isDone' => 1])]
         );
     }
 
@@ -61,7 +72,7 @@ class TaskController extends AbstractController
     {
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
-        $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
+        $this->addFlash('success', sprintf("La tâche %s a bien changée d'état", $task->getTitle()));
         return $this->redirectToRoute('task_list');
     }
 

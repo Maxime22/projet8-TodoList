@@ -8,7 +8,8 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-abstract class FormHandler{
+abstract class FormHandler
+{
     /**
      * @var RequestStack
      */
@@ -29,15 +30,19 @@ abstract class FormHandler{
      * @var FormFactoryInterface
      */
     protected $formFactory;
- 
+
     /**
      * @param FormFactoryInterface $formFactory
      * @param RequestStack $requestStack
      * @param EntityManagerInterface $entityManager
      *
      */
-    public function __construct(FormFactoryInterface $formFactory, RequestStack $requestStack, EntityManagerInterface $entityManager, Security $security)
-    {
+    public function __construct(
+        FormFactoryInterface $formFactory,
+        RequestStack $requestStack,
+        EntityManagerInterface $entityManager,
+        Security $security
+    ) {
         $this->formFactory = $formFactory;
         $this->requestStack = $requestStack;
         $this->em = $entityManager;
@@ -73,5 +78,4 @@ abstract class FormHandler{
      * @return void
      */
     abstract protected function update();
-    
 }

@@ -24,8 +24,13 @@ class UserFormHandler extends FormHandler
      */
     private $passwordHasher;
 
-    public function __construct(FormFactoryInterface $formFactory, RequestStack $requestStack, EntityManagerInterface $entityManager, Security $security, UserPasswordHasherInterface $passwordHasher)
-    {
+    public function __construct(
+        FormFactoryInterface $formFactory,
+        RequestStack $requestStack,
+        EntityManagerInterface $entityManager,
+        Security $security,
+        UserPasswordHasherInterface $passwordHasher
+    ) {
         parent::__construct($formFactory, $requestStack, $entityManager, $security);
         $this->passwordHasher = $passwordHasher;
     }
