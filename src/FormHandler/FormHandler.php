@@ -52,17 +52,13 @@ abstract class FormHandler
     /**
      * @return boolean
      */
-    public function process(string $createOrUpdate)
+    public function process(string $typeOfProcess)
     {
         $this->form->handleRequest($this->requestStack->getCurrentRequest());
 
         if ($this->form->isSubmitted() && $this->form->isValid()) {
-            if ($createOrUpdate === 'create') {
-                $this->create();
-                return true;
-            }
-            if ($createOrUpdate === 'update') {
-                $this->update();
+            if(in_array($typeOfProcess,['create','update'])){
+                $this->$typeOfProcess();
                 return true;
             }
         }

@@ -44,7 +44,7 @@ class Task
     private bool $isDone;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tasks")
+     * @ORM\ManyToOne(targetEntity=User::class)
      * @var UserInterface
      */
     private $author;

@@ -25,7 +25,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/ended", name="task_list_ended")
      */
-    public function listEndingAction()
+    public function listEndingAction(): Response
     {
         return $this->render(
             'task/list.html.twig',
