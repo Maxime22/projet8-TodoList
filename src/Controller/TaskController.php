@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Task;
-use App\FormHandler\TaskFormHandler;
+use App\FormHandler\TaskCreateFormHandler;
+use App\FormHandler\TaskUpdateFormHandler;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormInterface;
 
 class TaskController extends AbstractController
 {
@@ -36,10 +36,10 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/create", name="task_create")
      */
-    public function createAction(TaskFormHandler $taskFormHandler): Response
+    public function createAction(TaskCreateFormHandler $taskCreateFormHandler): Response
     {
-        $form = $taskFormHandler->init(new Task());
-        if ($taskFormHandler->process('create')) {
+        $form = $taskCreateFormHandler->createForm(new Task());
+        if ($taskCreateFormHandler->handle()) {
             $this->addFlash('success', 'La tâche a été bien été ajoutée.');
             return $this->redirectToRoute('task_list');
         }
@@ -49,10 +49,10 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/edit", name="task_edit")
      */
-    public function editAction(Task $task, TaskFormHandler $taskFormHandler): Response
+    public function editAction(Task $task, TaskUpdateFormHandler $taskUpdateFormHandler): Response
     {
-        $form = $taskFormHandler->init($task);
-        if ($taskFormHandler->process('update')) {
+        $form = $taskUpdateFormHandler->createForm($task);
+        if ($taskUpdateFormHandler->handle()) {
             $this->addFlash('success', 'La tâche a bien été modifiée.');
             return $this->redirectToRoute('task_list');
         }

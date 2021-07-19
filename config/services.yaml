@@ -31,3 +31,22 @@ services:
     # please note that last definitions always *replace* previous ones
 
     #container.dumper.inline_factories: true
+
+    App\FormHandler\TaskCreateFormHandler:
+        calls:
+            - setEntityManager: ['@doctrine.orm.default_entity_manager']
+            - setSecurity: ['@security.helper']
+    
+    App\FormHandler\TaskUpdateFormHandler:
+        calls:
+            - setEntityManager: ['@doctrine.orm.default_entity_manager']
+
+    App\FormHandler\UserCreateFormHandler:
+        calls:
+            - setEntityManager: ['@doctrine.orm.default_entity_manager']
+            - setPasswordHasher: ['@security.user_password_hasher']
+
+    App\FormHandler\UserUpdateFormHandler:
+        calls:
+            - setEntityManager: ['@doctrine.orm.default_entity_manager']
+            - setPasswordHasher: ['@security.user_password_hasher']

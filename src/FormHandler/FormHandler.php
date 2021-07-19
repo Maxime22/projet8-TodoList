@@ -3,8 +3,6 @@
 namespace App\FormHandler;
 
 use Symfony\Component\Form\FormInterface;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -15,17 +13,13 @@ abstract class FormHandler
      */
     protected $requestStack;
     /**
-     * @var FormInterface
+     * @var FormInterface<FormInterface>
      */
     protected $form;
     /**
-     * @var EntityManagerInterface
+     * @var mixed
      */
-    protected $em;
-    /**
-     * @var Security
-     */
-    protected $security;
+    protected $entity;
     /**
      * @var FormFactoryInterface
      */
@@ -34,44 +28,45 @@ abstract class FormHandler
     /**
      * @param FormFactoryInterface $formFactory
      * @param RequestStack $requestStack
-     * @param EntityManagerInterface $entityManager
-     *
      */
     public function __construct(
         FormFactoryInterface $formFactory,
-        RequestStack $requestStack,
-        EntityManagerInterface $entityManager,
-        Security $security
-    ) {
+        RequestStack $requestStack
+    ){
         $this->formFactory = $formFactory;
         $this->requestStack = $requestStack;
-        $this->em = $entityManager;
-        $this->security = $security;
+    }
+
+    /**
+     * @param object $entity
+     * @return FormInterface<FormInterface>
+     */
+    public function createForm(object $entity)
+    {
+        $this->entity = $entity;
+        return $this->form = $this->formFactory->create($this->getFormType(), $entity);
     }
 
     /**
      * @return boolean
      */
-    public function process(string $typeOfProcess)
+    public function handle()
     {
         $this->form->handleRequest($this->requestStack->getCurrentRequest());
-
         if ($this->form->isSubmitted() && $this->form->isValid()) {
-            if(in_array($typeOfProcess,['create','update'])){
-                $this->$typeOfProcess();
-                return true;
-            }
+            $this->process();
+            return true;
         }
-
         return false;
     }
 
     /**
      * @return void
      */
-    abstract protected function create();
+    abstract protected function process();
+
     /**
-     * @return void
+     * @return string
      */
-    abstract protected function update();
+    abstract protected function getFormType();
 }
