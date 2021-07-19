@@ -36,17 +36,25 @@ services:
         calls:
             - setEntityManager: ['@doctrine.orm.default_entity_manager']
             - setSecurity: ['@security.helper']
-    
+            - setFormFactory: ['@form.factory'] 
+            - setRequestStack: ['@request_stack'] 
+
     App\FormHandler\TaskUpdateFormHandler:
         calls:
             - setEntityManager: ['@doctrine.orm.default_entity_manager']
+            - setFormFactory: ['@form.factory'] 
+            - setRequestStack: ['@request_stack'] 
 
     App\FormHandler\UserCreateFormHandler:
         calls:
             - setEntityManager: ['@doctrine.orm.default_entity_manager']
             - setPasswordHasher: ['@security.user_password_hasher']
+            - setFormFactory: ['@form.factory'] 
+            - setRequestStack: ['@request_stack'] 
 
     App\FormHandler\UserUpdateFormHandler:
         calls:
             - setEntityManager: ['@doctrine.orm.default_entity_manager']
             - setPasswordHasher: ['@security.user_password_hasher']
+            - setFormFactory: ['@form.factory'] 
+            - setRequestStack: ['@request_stack'] 

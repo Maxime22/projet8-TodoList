@@ -26,14 +26,16 @@ abstract class FormHandler
     protected $formFactory;
 
     /**
-     * @param FormFactoryInterface $formFactory
-     * @param RequestStack $requestStack
+     * @return void
      */
-    public function __construct(
-        FormFactoryInterface $formFactory,
-        RequestStack $requestStack
-    ){
+    public function setFormFactory(FormFactoryInterface $formFactory){
         $this->formFactory = $formFactory;
+    }
+
+    /**
+     * @return void
+     */
+    public function setRequestStack(RequestStack $requestStack){
         $this->requestStack = $requestStack;
     }
 
