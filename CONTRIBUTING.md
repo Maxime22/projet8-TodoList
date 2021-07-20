@@ -46,4 +46,4 @@ Une documentation à l’intérieur du site (How to use) : Mettre des explicatio
 - Mettre un système de log : les utilisateurs rencontrent souvent des problèmes inattendus en production. Mettre en place en système de log permettrait de retrouver la trace des différentes actions effectuées.
 - Mettre en place une sauvegarde automatique avec le CRON : Pour éviter de perdre les données de la base de donnée, une sauvegarde automatique peut être mise en place sur le serveur de production.
 
-Ces différentes améliorations ne sont que des pistes éventuelles. Maintenant que le site est performant et fiable, les améliorations sont potentiellement infinies. Le but étant de respecter au mieux, selon le contexte, l’ensemble des directives de ce document qui est amené à évoluer.
+Ces différentes améliorations ne sont que des pistes éventuelles. Maintenant que le site est performant et fiable, les améliorations sont potentiellement infinies. Le but étant de respecter au mieux, selon le contexte, l’ensemble des directives de ce document qui est amené à évoluer. Pour d'autres conseils plus généraux sur la contribution : https://gist.github.com/PurpleBooth/b24679402957c63ec426
