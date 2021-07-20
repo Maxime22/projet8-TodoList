@@ -1,5 +1,4 @@
 # Guide de contribution
-============
 Pourquoi ce document ?
 
 Ce document ouvre la marche en matière de collaboration à plusieurs sur le projet. Il explique comment doivent procéder tous les développeurs qui souhaitent apporter des modifications au projet. Ces explications concernent le processus de qualité à utiliser ainsi que les règles à respecter pour les fonctionnalités actuelles et futures. 
