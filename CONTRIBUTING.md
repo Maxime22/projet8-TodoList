@@ -1,5 +1,5 @@
 # Guide de contribution
-Pourquoi ce document ?
+**Pourquoi ce document ?**
 
 Ce document ouvre la marche en matière de collaboration à plusieurs sur le projet. Il explique comment doivent procéder tous les développeurs qui souhaitent apporter des modifications au projet. Ces explications concernent le processus de qualité à utiliser ainsi que les règles à respecter pour les fonctionnalités actuelles et futures. 
 Comment procéder pour faire évoluer le projet ? Règles de qualité à respecter pour tous les développeurs du projet
@@ -33,8 +33,8 @@ Le choix du serveur est prépondérant en ce qui concerne les performances. C’
 Pour le moment, l’application permet de gérer des utilisateurs et un système de tâches. L’ensemble du code est disponible sur Github dans un répertoire public. Pour le reprendre, il suffit de cloner le projet sur un répertoire local. Libre ensuite de mettre ce projet sur un repository privé et/ou sur un autre outil de versioning. 
 
 ### Etapes de collaboration
-- Les pull request : Sur les outils de versioning comme Github, il est possible de faire ce qu’on appelle des pull request. Cela permet de proposer sa MAJ de code à la vérification. Il est important de soumettre son code à la vérification d’autres développeurs (même moins expérimentés) lorsque l’on travaille en équipe. Cela permet de garder un code plus fiable sur le long terme et de potentiellement progresser à chaque review.
-- Une branche par fonctionnalité : Pour chaque nouvelle fonctionnalité, il est plus simple de s’organiser en créant une nouvelle branche. Cela permet de splitter le travail au sein de l’équipe et de ne pas - mélanger des fonctionnalités qui n’ont rien à voir entre elles.
+- **Les pull request** : Sur les outils de versioning comme Github, il est possible de faire ce qu’on appelle des pull request. Cela permet de proposer sa MAJ de code à la vérification. Il est important de soumettre son code à la vérification d’autres développeurs (même moins expérimentés) lorsque l’on travaille en équipe. Cela permet de garder un code plus fiable sur le long terme et de potentiellement progresser à chaque review.
+- **Une branche par fonctionnalité** : Pour chaque nouvelle fonctionnalité, il est plus simple de s’organiser en créant une nouvelle branche. Cela permet de splitter le travail au sein de l’équipe et de ne pas - mélanger des fonctionnalités qui n’ont rien à voir entre elles.
 
 ### Les pistes d’améliorations éventuelles
 - **Varnish** : Varnish est un outil de cache HTTP permettant d’améliorer encore la performance de notre application (https://symfony.com/doc/current/http_cache/varnish.html)

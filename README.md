@@ -52,10 +52,10 @@ Si jamais vous voulez regarder si les tests fonctionnent :
 ## English
 
 ### Prerequisites
-- PHP >= 7.4
-- composer: https://getcomposer.org/doc/00-intro.md
-- yarn: https://classic.yarnpkg.com/en/docs/getting-started/
-- Functional local server allowing to connect to a database (WAMP / MAMP / LAMP with php, mysql and phpmyadmin or any other similar configuration)
+- **PHP >= 7.4**
+- **composer**: https://getcomposer.org/doc/00-intro.md
+- **yarn**: https://classic.yarnpkg.com/en/docs/getting-started/
+- **Functional local server** allowing to connect to a database (WAMP/MAMP/LAMP with php, mysql and phpmyadmin or any other similar configuration)
 
 ### Project installation
 - Clone the project on your repository
