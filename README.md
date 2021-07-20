@@ -45,7 +45,7 @@ Si jamais vous voulez regarder si les tests fonctionnent :
 - Si jamais vous voulez voir le test-coverage (dans le dossier public/test-coverage) : ```./vendor/bin/phpunit --coverage-html public/test-coverage```
 
 ### Profiling
-- Si vous souhaiter tester les performances de l'application, installez et utilisez Blackfire : https://blackfire.io/docs/up-and-running/installation
+- Si vous souhaitez tester les performances de l'application, installez et utilisez Blackfire : https://blackfire.io/docs/up-and-running/installation
 
 --------------------------------------------------------------------------------------
 
