@@ -3,10 +3,10 @@
 ## Français
 
 ### Prérequis
-- PHP >= 7.4
-- composer : https://getcomposer.org/doc/00-intro.md
-- yarn : https://classic.yarnpkg.com/en/docs/getting-started/
-- Serveur local fonctionnel permettant de se connecter à une base de donnée (WAMP/MAMP/LAMP avec php, mysql et phpmyadmin ou tout autre configuration similaire)
+- **PHP >= 7.4**
+- **composer** : https://getcomposer.org/doc/00-intro.md
+- **yarn** : https://classic.yarnpkg.com/en/docs/getting-started/
+- **Serveur local fonctionnel** permettant de se connecter à une base de donnée (WAMP/MAMP/LAMP avec php, mysql et phpmyadmin ou tout autre configuration similaire)
 
 ### Installation du projet
 - Cloner le projet sur votre repository
