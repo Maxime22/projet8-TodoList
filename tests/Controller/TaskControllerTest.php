@@ -26,6 +26,11 @@ class TaskControllerTest extends WebTestCase
         $this->client->request('GET', '/tasks');
         $this->assertResponseRedirects();
     }
+    public function testListTaskEndedIsRedirected()
+    {
+        $this->client->request('GET', '/tasks/ended');
+        $this->assertResponseRedirects();
+    }
     public function testNewTaskIsRedirected()
     {
         $this->client->request('GET', '/tasks/create');
@@ -56,6 +61,15 @@ class TaskControllerTest extends WebTestCase
         $this->login($this->client, $user);
 
         $this->client->request('GET', '/tasks');
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+    }
+
+    public function testLetAuthenticatedUserAccessListTaskEnded()
+    {
+        $user = $this->em->getRepository(User::class)->findOneBy(["username" => "demo"]);
+        $this->login($this->client, $user);
+
+        $this->client->request('GET', '/tasks/ended');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
     }
 

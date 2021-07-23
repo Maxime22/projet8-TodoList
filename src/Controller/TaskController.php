@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Task;
-use App\Form\TaskType;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
+use App\FormHandler\TaskCreateFormHandler;
+use App\FormHandler\TaskUpdateFormHandler;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,55 +16,51 @@ class TaskController extends AbstractController
      */
     public function listAction(): Response
     {
-        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('App:Task')->findAll()]);
+        return $this->render(
+            'task/list.html.twig',
+            ['tasks' => $this->getDoctrine()->getRepository(Task::class)->findBy(['isDone' => 0])]
+        );
+    }
+
+    /**
+     * @Route("/tasks/ended", name="task_list_ended")
+     */
+    public function listEndingAction(): Response
+    {
+        return $this->render(
+            'task/list.html.twig',
+            ['tasks' => $this->getDoctrine()->getRepository(Task::class)->findBy(['isDone' => 1])]
+        );
     }
 
     /**
      * @Route("/tasks/create", name="task_create")
      */
-    public function createAction(Request $request, Security $security): Response
+    public function createAction(TaskCreateFormHandler $taskCreateFormHandler): Response
     {
-        $task = new Task();
-        $form = $this->createForm(TaskType::class, $task);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $task->setAuthor($security->getUser());
-            $task->setCreatedAt();
-            $em->persist($task);
-            $em->flush();
-
+        $form = $taskCreateFormHandler->createForm(new Task());
+        if ($taskCreateFormHandler->handle()) {
             $this->addFlash('success', 'La tâche a été bien été ajoutée.');
-
             return $this->redirectToRoute('task_list');
         }
-
         return $this->render('task/create.html.twig', ['form' => $form->createView()]);
     }
 
     /**
      * @Route("/tasks/{id}/edit", name="task_edit")
      */
-    public function editAction(Task $task, Request $request): Response
+    public function editAction(Task $task, TaskUpdateFormHandler $taskUpdateFormHandler): Response
     {
-        $form = $this->createForm(TaskType::class, $task);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
+        $form = $taskUpdateFormHandler->createForm($task);
+        if ($taskUpdateFormHandler->handle()) {
             $this->addFlash('success', 'La tâche a bien été modifiée.');
-
             return $this->redirectToRoute('task_list');
         }
-
         return $this->render(
-            'task/edit.html.twig', [
-            'form' => $form->createView(),
-            'task' => $task,
+            'task/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'task' => $task,
             ]
         );
     }
@@ -77,9 +72,7 @@ class TaskController extends AbstractController
     {
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
-
-        $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
-
+        $this->addFlash('success', sprintf("La tâche %s a bien changée d'état", $task->getTitle()));
         return $this->redirectToRoute('task_list');
     }
 
@@ -89,13 +82,10 @@ class TaskController extends AbstractController
     public function deleteTaskAction(Task $task): Response
     {
         $this->denyAccessUnlessGranted('task_delete', $task);
-
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
         $em->flush();
-
         $this->addFlash('success', 'La tâche a bien été supprimée.');
-
         return $this->redirectToRoute('task_list');
     }
 }

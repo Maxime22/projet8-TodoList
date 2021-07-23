@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use DateTime;
+use Doctrine\ORM\Mapping as ORM;
 use App\Repository\TaskRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
@@ -18,32 +19,33 @@ class Task
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private datetime $createdAt;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="Vous devez saisir un titre.")
      */
-    private $title;
+    private string $title;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="Vous devez saisir du contenu.")
      */
-    private $content;
+    private string $content;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isDone;
+    private bool $isDone;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tasks")
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @var UserInterface
      */
     private $author;
 
@@ -58,14 +60,14 @@ class Task
         return $this->id;
     }
 
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
     public function setCreatedAt(): self
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new DateTime();
         return $this;
     }
 
@@ -102,12 +104,12 @@ class Task
         return $this;
     }
 
-    public function getAuthor(): ?User
+    public function getAuthor(): ?UserInterface
     {
         return $this->author;
     }
 
-    public function setAuthor(?User $author): self
+    public function setAuthor(?UserInterface $author): self
     {
         $this->author = $author;
 

@@ -25,7 +25,7 @@ class SecurityControllerTest extends WebTestCase
     {
         $this->client->request('GET', '/login');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertSelectorTextContains('button', 'Se connecter');
+        $this->assertSelectorTextContains('h1', 'Se connecter');
         $this->assertSelectorNotExists('.alert.alert-danger');
     }
 
