@@ -17,16 +17,17 @@
 - Faire les migrations pour mettre à jour le schéma de la base de donnée : ```php bin/console doctrine:migrations:migrate```
 - Charger les fixtures : ```php bin/console doctrine:fixtures:load```
 - Installer webpack : ```yarn install```
+- Le mot de passe pour admin et demo à l'installation est : 1234Jean%1234
 
 ### Lancer l’application en développement
 - Mettre APP_ENV=dev dans le .env
-- Dans un premier terminal : ```symfony serve``` (si vous avez la commande symfony), autrement faire ```php bin/console server:start```
+- Dans un premier terminal : ```symfony serve```
 - Dans un second terminal en même temps que le serveur est en route : ```yarn watch```
 
 ### Lancer l’application en production
 - Mettre APP_ENV=prod dans le .env
 - Créer un build de production pour la minification du CSS et du JS : ```yarn build```
-- Dans un terminal : ```symfony serve``` (si vous avez la commande symfony), autrement faire ```php bin/console server:start```
+- Dans un terminal : ```symfony serve```
 
 ### Gestion de l'optimisation
 - Il est possible que l'application ne se lance pas suite à l'utilisation de : ```composer dump-autoload --no-dev --classmap-authoritative```, faire alors un ```composer update``` pour recharger les packages de développement
@@ -66,16 +67,17 @@ Si jamais vous voulez regarder si les tests fonctionnent :
 - Perform the migrations to update the database schema: ```php bin/console doctrine:migrations:migrate```
 - Load fixtures: ```php bin/console doctrine:fixtures:load```
 - Install webpack: ```yarn install```
+- The password for admin and demo at installation is: 1234Jean%1234
 
 ### Launch the application in development
 - Put APP_ENV = dev in the .env
-- In a first terminal: ```symfony serve``` (if you have the symfony command), otherwise do ```php bin/console server:start```
+- In a first terminal: ```symfony serve```
 - In a second terminal at the same time that the server is on the way: ```yarn watch```
 
 ### Launch the application in production
 - Put APP_ENV=prod in the .env
 - Create a production build for CSS and JS minification: ```yarn build```
-- In a terminal: ```symfony serve``` (if you have the symfony command), otherwise do ```php bin/console server:start```
+- In a terminal: ```symfony serve```
 
 ### Optimization management
 - It is possible that the application does not launch after using: ```composer dump-autoload --no-dev --classmap-authoritative```, then do a ```composer update``` to reload development packages
